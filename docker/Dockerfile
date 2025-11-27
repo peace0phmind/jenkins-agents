@@ -4,6 +4,8 @@ FROM docker:cli
 
 RUN apk -U add openjdk17-jre bash
 
+RUN mkdir -p /home/jenkins/agent
+
 COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
 

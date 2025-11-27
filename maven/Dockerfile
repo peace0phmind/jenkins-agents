@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:alpine as jnlp
+FROM jenkins/inbound-agent:alpine AS jnlp
 
 FROM maven:3.9-eclipse-temurin-17
 
@@ -12,11 +12,13 @@ COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
 
 ENV JENKINS_AGENT_WORKDIR=/home/jenkins/agent
-RUN mkdir -p "${JENKINS_AGENT_WORKDIR}"
 
 USER root
 
-RUN usermod -d /home/jenkins/agent -m ubuntu
+RUN mkdir -p /home/jenkins && \
+    rm -rf /home/jenkins/agent && \
+    usermod -d /home/jenkins/agent -m ubuntu && \
+    chown -R ubuntu:ubuntu /home/jenkins/agent
 
 USER ubuntu
 

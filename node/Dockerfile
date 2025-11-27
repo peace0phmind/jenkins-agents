@@ -1,6 +1,6 @@
 FROM jenkins/inbound-agent:alpine as jnlp
 
-FROM docker:cli
+FROM node:22-alpine
 
 RUN apk -U add openjdk17-jre bash
 

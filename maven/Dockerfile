@@ -16,7 +16,7 @@ RUN mkdir -p "${JENKINS_AGENT_WORKDIR}"
 
 USER root
 
-usermod -d /home/jenkins/agent -m ubuntu
+RUN usermod -d /home/jenkins/agent -m ubuntu
 
 USER ubuntu
 

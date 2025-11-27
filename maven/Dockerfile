@@ -14,4 +14,10 @@ COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
 ENV JENKINS_AGENT_WORKDIR=/home/jenkins/agent
 RUN mkdir -p "${JENKINS_AGENT_WORKDIR}"
 
+USER root
+
+usermod -d /home/jenkins/agent -m ubuntu
+
+USER ubuntu
+
 ENTRYPOINT ["/usr/local/bin/jenkins-agent"]

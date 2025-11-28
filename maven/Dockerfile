@@ -15,6 +15,8 @@ ENV JENKINS_AGENT_WORKDIR=/home/jenkins/agent
 
 USER root
 
+COPY ../bin/mc /usr/local/bin/mc
+
 RUN mkdir -p /home/jenkins && \
     rm -rf /home/jenkins/agent && \
     usermod -d /home/jenkins/agent -m ubuntu && \

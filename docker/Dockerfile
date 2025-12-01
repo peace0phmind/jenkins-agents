@@ -2,6 +2,9 @@ FROM jenkins/inbound-agent:alpine as jnlp
 
 FROM docker:cli
 
+RUN addgroup -g 1000 ubuntu && \
+    adduser -u 1000 -h /home/jenkins/agent -G jenkins-agent -s /bin/sh -D ubuntu
+
 RUN apk -U add openjdk17-jre bash zip unzip
 
 COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent

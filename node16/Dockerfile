@@ -1,6 +1,6 @@
 FROM jenkins/inbound-agent:alpine as jnlp
 
-FROM node:16-alpine
+FROM node:16.14.2-alpine
 
 RUN corepack enable && \
     corepack prepare pnpm@latest --activate
